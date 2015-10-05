@@ -1,0 +1,24 @@
+{% extends '::base.html.twig' %}
+{% block body -%}
+<div class="jumbotron">
+    <h2>Author</h2>
+</div>
+
+    <table class="table table-striped">
+        <tbod
+            <tr>
+                <th>Name</th>
+                <td>{{ entity.name }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+        
+
+        <a href="{{ path('author_edit', { 'id': entity.id }) }}" class="btn btn-primary btn-md"> Edit </a>
+        <hr />
+        {{ form(delete_form) }}
+        <hr />
+        <a href="{{ path('author') }}">Back to the Author List</a>
+{% endblock %}

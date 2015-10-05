@@ -1,0 +1,17 @@
+{% extends '::base.html.twig' %}
+{% form_theme edit_form 'bootstrap_3_layout.html.twig' %}
+
+{% block body -%}
+<div class="jumbotron">
+    <h2>Edit Article</h2>
+</div>
+
+{{ form(edit_form) }}
+
+
+<hr />        
+{{ form(delete_form) }}
+<hr />
+<a href="{{ path('article') }}">Back to the Articles</a>
+{{ tinymce_init() }}
+{% endblock %}

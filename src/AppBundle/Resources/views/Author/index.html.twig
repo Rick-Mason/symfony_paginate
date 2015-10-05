@@ -1,0 +1,26 @@
+{% extends '::base.html.twig' %}
+{% block body -%}
+<div class="jumbotron">
+    <h2>Author list</h2>
+</div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th colspan="2">Editing</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('author_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
+                <td><a href="{{ path('author_show', { 'id': entity.id }) }}"
+                        class="btn btn-sm btn-primary">View</a></td>
+                <td><a href="{{ path('author_edit', { 'id': entity.id }) }}"
+                        class="btn btn-sm btn-primary">Edit</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+        <a href="{{ path('author_new') }}" class="btn btn-lg btn-primary">Create a New Author</a>
+    {% endblock %}

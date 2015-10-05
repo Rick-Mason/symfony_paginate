@@ -1,0 +1,27 @@
+{% extends '::base.html.twig' %}
+{# /src/AppBundle/Resources/views/Exercise/show.html.twig #}
+{% block body %}
+<div class="jumbotron">
+    <h2>{{ entity.name }}</h2>
+</div>
+
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <th>Muscle Group</th>
+                <td>{{ entity.muscleGroup }}</td>
+                <th>Rating</th>
+                <td>{{ entity.rating }}</td>
+                <td><a href="{{ entity.youtubeUrl }}" class="btn bnt-md btn-primary">Watch on Youtube</a></td>
+            </tr>
+        </tbody>
+    </table>
+    {{ entity.description|raw }}
+    <hr />
+ <a href="{{ path('exercise_edit', { 'id': entity.id }) }}"
+            class="btn btn-md btn-primary">Edit</a>
+<hr />
+{{ form(delete_form) }}
+<hr />
+<a href="{{ path('exercise') }}">Back to the Exercises</a>
+{% endblock %}

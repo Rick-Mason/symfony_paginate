@@ -1,0 +1,83 @@
+{% extends '::base.html.twig' %}
+{# src/AppBundle/Resources/views/index.html.twig #}
+{% block body -%}
+<div class="jumbotron">
+    <h2>{{ app.session.get('group') }} Exercises</h2>
+</div>
+    {% if pagelist|length > 1 %}
+        <div class="row text-center">
+        <ul class="pagination">
+            {% if pagestart > 1 %}
+                <li><a href="/exercise/list/1" aria-label="First">
+                        <span aria-hidden="true">&Lt;</span></a></li>
+                <li><a href="/exercise/list/{{ pagestart - 1 }}" aria-label="Previous">
+                        <span aria-hidden="true">&lt;</span></a>
+                </li>
+            {% endif %}
+            {% for page in pagelist %}
+                {% if pagestart == page %}
+                    <li class="active"><a href="#">{{page}}</a></li>
+                {% else %}
+                    <li><a href="/exercise/list/{{page}}">{{page}}</a></li>
+                {% endif %}
+            {% endfor %}
+            {% if pagestart < lastpage %}
+                <li><a href="/exercise/list/{{ pagestart + 1 }}" aria-label="First">
+                        <span aria-hidden="true">&gt;</span></a></li>
+                <li><a href="/exercise/list/{{ lastpage }}" aria-label="Previous">
+                        <span aria-hidden="true">&Gt;</span></a>
+                </li>
+            {% endif %}
+            
+        </ul>
+        </div>
+        <hr />
+    {% endif %}  
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Musclegroup</th>
+                <th>Rating</th>
+                <th colspan="2">
+                    <form class="form-inline pull-right" role="form" action="{{path('exercise_update_session')}}">
+                        <div class="form-group">
+                            <label for="choosegroup">View </label>
+                            <select class="form-control" name="musclegroup" id="choosegroup">
+                                {% for group in groupArray %}
+                                 <option value="{{group}}"
+                                    {% if app.session.get('group') == group %}
+                                        selected="selected"
+                                    {% endif %}
+                                 >{{group}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">GO</button>
+
+                    </form>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('exercise_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
+                <td>{{ entity.muscleGroup }}</td>
+                <td>{{ entity.rating }}</td>
+                <td><a href="{{ path('exercise_show', { 'id': entity.id }) }}"
+                    class="btn btn-md btn-primary">View Description</a>
+                </td>
+                <td><a href="{{ path('exercise_edit', { 'id': entity.id }) }}"
+                    class="btn btn-md btn-primary">Edit Exercise</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+            <a href="{{ path('exercise_new') }}" class="btn btn-lg btn-primary">
+                Create a new entry</a>
+
+    {% endblock %}

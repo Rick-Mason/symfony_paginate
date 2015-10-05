@@ -1,0 +1,11 @@
+{% extends '::base.html.twig' %}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+{% block body -%}
+<div class="jumbotron">
+    <h2>Create Author</h2>
+</div>
+
+    {{ form(form) }}
+<hr />
+        <a href="{{ path('author') }}"> Back to the Author List</a>
+{% endblock %}

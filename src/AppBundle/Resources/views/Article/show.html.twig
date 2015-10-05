@@ -1,0 +1,19 @@
+{% extends '::base.html.twig' %}
+{% block body -%}
+    
+ <div class="jumbotron">   
+    <h2>{{ entity.title }}</h2>
+</div>
+<hr />
+{{ entity.body|raw }}
+
+
+        
+    <hr />
+    <a href="{{ path('article_edit', { 'id': entity.id }) }}" class="btn btn-primary btn-md">Edit</a>
+    <hr />
+    {{ form(delete_form) }}
+    <hr />
+    <a href="{{ path('article') }}">Back to Articles</a>
+
+{% endblock %}

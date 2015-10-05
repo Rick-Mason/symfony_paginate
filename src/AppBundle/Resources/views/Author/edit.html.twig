@@ -1,0 +1,13 @@
+{% extends '::base.html.twig' %}
+{% form_theme edit_form 'bootstrap_3_layout.html.twig' %}
+{% block body -%}
+<div class="jumbotron">
+    <h2>Author edit</h2>
+</div>
+
+    {{ form(edit_form) }}
+<hr />      
+{{ form(delete_form) }}
+<hr />
+<a href="{{ path('author') }}">Back to Author List</a>
+{% endblock %}
